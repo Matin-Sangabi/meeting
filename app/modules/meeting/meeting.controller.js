@@ -1,5 +1,6 @@
 const { default: autoBind } = require('auto-bind');
 const meetingService = require('./meeting.service');
+const { createAndUpdateMeeting } = require('./meeting.validation');
 
 class MeetingController {
   #service;
@@ -10,7 +11,9 @@ class MeetingController {
 
   async create(req, res, next) {
     try {
-      const { id: userId } = req.user;
+      const { id: userId } = await createAndUpdateMeeting.validateAsync(
+        req.user
+      );
       const { title, description } = req.body;
       const data = await this.#service.create({ userId, title, description });
       return res.status(201).json(data);
@@ -51,7 +54,9 @@ class MeetingController {
   async updateMeeting(req, res, next) {
     try {
       const { id } = req.params;
-      const { title, description } = req.body;
+      const { title, description } = await createAndUpdateMeeting.validateAsync(
+        req.body
+      );
       const data = await this.#service.updateMeeting({
         id,
         title,
