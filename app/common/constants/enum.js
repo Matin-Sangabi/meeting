@@ -4,6 +4,9 @@ const USER_INFO = {
   id: '1',
 };
 
+const SIGN_MESSAGE_TEXT = 'Hello , welcome to meeting app';
+
 module.exports = {
   USER_INFO,
+  SIGN_MESSAGE_TEXT,
 };

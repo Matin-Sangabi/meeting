@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const meetingSchema = new mongoose.Schema(
   {
-    userId: { type: mongoose.Types.ObjectId, ref: 'users', required: true },
+    userId: { type: mongoose.Types.ObjectId, ref: 'user', required: true },
     title: {
       type: String,
       required: true,
@@ -10,6 +10,10 @@ const meetingSchema = new mongoose.Schema(
     description: {
       type: String,
       required: true,
+    },
+    time: {
+      start_time: { type: Date },
+      end_time: { type: Date },
     },
   },
   {

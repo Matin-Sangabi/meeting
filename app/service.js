@@ -5,6 +5,7 @@ const createError = require('http-errors');
 const path = require('path');
 
 const { routes } = require('./routes/routes');
+const { ensureDefaultUser } = require('./common/scripts/seedUser');
 
 class Application {
   #app = express();
@@ -41,6 +42,7 @@ class Application {
     try {
       await mongoose.connect(this.#DB_URL);
       console.log('DB connected successfully');
+      await ensureDefaultUser();
     } catch (error) {
       console.log('DB connection failed ! ', error?.message);
     }

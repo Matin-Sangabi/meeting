@@ -11,11 +11,16 @@ class MeetingController {
 
   async create(req, res, next) {
     try {
-      const { id: userId } = await createAndUpdateMeeting.validateAsync(
-        req.user
-      );
-      const { title, description } = req.body;
-      const data = await this.#service.create({ userId, title, description });
+      const { _id: userId } = req.user;
+      const { title, description, start_time, end_time } =
+        await createAndUpdateMeeting.validateAsync(req.body);
+      const data = await this.#service.create({
+        userId,
+        title,
+        description,
+        start_time,
+        end_time,
+      });
       return res.status(201).json(data);
     } catch (error) {
       next(error);
@@ -33,7 +38,7 @@ class MeetingController {
 
   async getAllMeetingUsers(req, res, next) {
     try {
-      const { id: userId } = req.user;
+      const { _id: userId } = req.user;
       const data = await this.#service.getAllMeetUsers(userId);
       return res.json(data);
     } catch (error) {
@@ -54,13 +59,14 @@ class MeetingController {
   async updateMeeting(req, res, next) {
     try {
       const { id } = req.params;
-      const { title, description } = await createAndUpdateMeeting.validateAsync(
-        req.body
-      );
+      const { title, description, start_time, end_time } =
+        await createAndUpdateMeeting.validateAsync(req.body);
       const data = await this.#service.updateMeeting({
         id,
         title,
         description,
+        start_time,
+        end_time,
       });
       return res.json(data);
     } catch (error) {

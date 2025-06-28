@@ -1,6 +1,6 @@
 const createHttpError = require('http-errors');
 const { verifyJwt } = require('../jwt/jwt');
-const { USER_INFO } = require('../constants/enum');
+const { userModel } = require('../../models/user.model');
 
 async function AuthGuard(req, res, next) {
   try {
@@ -8,12 +8,12 @@ async function AuthGuard(req, res, next) {
     if (access) {
       const token = access.split(' ')[1];
       if (!token) {
-        throw createHttpError.Unauthorized('not find token');
+        throw createHttpError.Unauthorized('Token Not Found !');
       }
       const data = verifyJwt(token);
       if (typeof data === 'object' && 'id' in data) {
-        const user = data?.email;
-        if (user !== USER_INFO.email) {
+        const user = await userModel.findById(data?.id, { _id: 1 }).lean();
+        if (!user) {
           throw createHttpError.Unauthorized('not find user or valid token');
         }
         req.user = user;

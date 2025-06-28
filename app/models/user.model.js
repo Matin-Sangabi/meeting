@@ -4,25 +4,25 @@ const userSchema = new mongoose.Schema(
   {
     walletAddress: {
       type: String,
-      required: true,
+      required: false,
       unique: true,
       trim: true,
     },
-    message: {
+    signature: {
       type: String,
-      required: true,
+      required: false,
       trim: true,
     },
     email: {
       type: String,
-      required: false,
+      required: true,
       unique: true,
       lowercase: true,
       trim: true,
     },
     password: {
       type: String,
-      required: false,
+      required: true,
       trim: true,
     },
   },

@@ -1,16 +1,18 @@
 const Joi = require('joi');
 
-const signMessageValidation = Joi.object({
-  signature: Joi.string().required(),
-  message: Joi.string().required(),
-});
-
 const loginValidation = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  email: Joi.string().email().required().messages({
+    'string.empty': 'Email is required',
+    'string.email': 'Invalid email',
+  }),
+  password: Joi.string().required().messages({
+    'string.empty': 'Password is required',
+  }),
+  signature: Joi.string().required().messages({
+    'string.empty': 'Signature is required',
+  }),
 });
 
 module.exports = {
-  signMessageValidation,
   loginValidation,
 };
