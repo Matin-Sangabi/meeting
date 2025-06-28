@@ -1,13 +1,14 @@
 {
   "name": "meet",
   "version": "1.0.0",
-  "description": "",
+  "description": "Meeting App",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",

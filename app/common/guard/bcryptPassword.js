@@ -1,22 +1,22 @@
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
 
 async function hashPassword(password) {
-    const saltRounds = 10
-    const saltPass = await bcrypt.genSaltSync(saltRounds)
+  const saltRounds = 10;
+  const saltPass = await bcrypt.genSaltSync(saltRounds);
 
-    const hashedPass = await bcrypt.hashSync(password, saltPass)
+  const hashedPass = await bcrypt.hashSync(password, saltPass);
 
-    return `${hashedPass}`
+  return `${hashedPass}`;
 }
 
 async function verifyPassword(password, hashPassword) {
-    const hashedPassword = hashPassword
-    const verify = await bcrypt.compareSync(password, hashedPassword)
+  const hashedPassword = hashPassword;
+  const verify = await bcrypt.compareSync(password, hashedPassword);
 
-    return verify
+  return verify;
 }
 
 module.exports = {
-    hashPassword,
-    verifyPassword,
-}
+  hashPassword,
+  verifyPassword,
+};
