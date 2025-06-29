@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "571037cd-4610-422b-89ed-959c382f586c",
+		"name": "Meeting",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26231509",
+		"_collection_link": "https://cloudy-escape-23674.postman.co/workspace/Project~fe16e4ae-c929-414f-b3fb-36a886a9373f/collection/26231509-571037cd-4610-422b-89ed-959c382f586c?action=share&source=collection_link&creator=26231509"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{server}}/auth/login",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{server}}/auth/user-info",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"auth",
+								"user-info"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Meeting",
+			"item": [
+				{
+					"name": "Create Meet",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Message\",\r\n    \"description\": \"Test description\",\r\n    \"start_time\": \"2025-06-28T11:36:53.890Z\", //optional => Date Time\r\n    \"end_time\": \"2025-06-28T12:36:53.890Z\" // optional\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/meeting/create-meet",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"meeting",
+								"create-meet"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Meeting",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{server}}/meeting/all-meet",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"meeting",
+								"all-meet"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Meeting Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/meeting/all-meet-users",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"meeting",
+								"all-meet-users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Meet by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/meeting/meet/{{id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"meeting",
+								"meet",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Meet",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Test Message\",\r\n    \"description\": \"Test description\",\r\n    \"start_time\": \"2025-06-28T11:36:53.890Z\", //optional => Date Time\r\n    \"end_time\": \"2025-06-28T12:36:53.890Z\" // optional\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{server}}/meeting/meet/{{id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"meeting",
+								"meet",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Meet",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{server}}/meeting/meet/{{id}}",
+							"host": [
+								"{{server}}"
+							],
+							"path": [
+								"meeting",
+								"meet",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "server",
+			"value": "http://localhost:5002/api/v1",
+			"type": "default"
+		},
+		{
+			"key": "access_token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4NWZkNTkzMThiY2FiNzJmOGEzZWVjNyIsImlhdCI6MTc1MTExMTI2MSwiZXhwIjoxNzUxMTk3NjYxfQ.v4EdBIZXwgNpWg5xXR7pbJzWHP62gSEqJjjtrk252Bo",
+			"type": "default"
+		},
+		{
+			"key": "id",
+			"value": "",
+			"type": "default"
+		}
+	]
+}
