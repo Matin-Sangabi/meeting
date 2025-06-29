@@ -30,7 +30,7 @@ class MeetingController {
   async getAllMeeting(req, res, next) {
     try {
       const data = await this.#service.getAllMeet();
-      return res.json(data);
+      return res.json({ data });
     } catch (error) {
       next(error);
     }
@@ -40,7 +40,7 @@ class MeetingController {
     try {
       const { _id: userId } = req.user;
       const data = await this.#service.getAllMeetUsers(userId);
-      return res.json(data);
+      return res.json({ data });
     } catch (error) {
       next(error);
     }

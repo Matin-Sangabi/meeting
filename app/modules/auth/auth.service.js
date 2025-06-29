@@ -47,6 +47,13 @@ class AuthService {
 
     return user;
   }
+  async getUserInfo(userId) {
+    const user = await this.#model.findById(userId, {
+      password: 0,
+      signature: 0,
+    });
+    return user;
+  }
 }
 
 module.exports = new AuthService();
