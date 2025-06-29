@@ -1,0 +1,1 @@
+export const SIGN_MESSAGE_TEXT = "Hello , welcome to meeting app";
